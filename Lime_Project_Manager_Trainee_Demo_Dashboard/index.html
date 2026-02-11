@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8'>
+<title>Lime Project Manager Trainee – Demo Dashboard</title>
+<link rel='stylesheet' href='style.css'>
+</head>
+<body>
+<div class='container'>
+  <h1>Lime Project Manager Trainee – Demo Dashboard</h1>
+  <p class='subtitle'>A personalised mini-project created by Dania for the role of <strong>Project Manager Trainee</strong> at Lime Technologies.</p>
+
+  <div class='section'>
+    <h2>Project Timeline & Milestones</h2>
+    <ul id='timeline'></ul>
+    <input id='taskInput' placeholder='Add milestone...'>
+    <button onclick='addTask()'>Add</button>
+  </div>
+
+  <div class='section'>
+    <h2>Client Meeting Notes</h2>
+    <textarea id='notes' placeholder='Write insights...'></textarea>
+    <button onclick='extractInsights()'>Extract Action Items</button>
+    <ul id='insights'></ul>
+  </div>
+
+  <div class='section'>
+    <h2>Process Mapping & CRM Optimization</h2>
+    <input id='processInput' placeholder='Describe a process...'>
+    <button onclick='analyze()'>Analyze</button>
+    <p id='analysis'></p>
+  </div>
+</div>
+
+<script src='script.js'></script>
+</body>
+</html>

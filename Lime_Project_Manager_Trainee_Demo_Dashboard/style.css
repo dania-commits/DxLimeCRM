@@ -1,0 +1,8 @@
+body{font-family:Arial;background:#f2f4f6;margin:0;padding:40px}
+.container{max-width:850px;margin:auto;background:#fff;padding:30px;border-radius:10px;box-shadow:0 0 10px #ccc}
+.subtitle{color:#444;margin-top:-10px}
+.section{margin-top:35px}
+input,textarea{width:100%;padding:10px;margin-top:10px;border-radius:6px;border:1px solid #ccc}
+button{padding:8px 16px;background:#4caf50;color:#fff;border:none;border-radius:6px;cursor:pointer;margin-top:10px}
+button:hover{opacity:0.9}
+ul{padding-left:20px;margin-top:10px}
