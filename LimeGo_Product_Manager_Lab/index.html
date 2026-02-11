@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lime Go – Product Manager Lab | Dania</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <div class="hero-left">
+        <h1>Lime Go – Product Manager Lab</h1>
+        <p class="hero-sub">
+          A personalised product case by Dania Sami for the Product Manager role at Lime Go. 
+          Focused on discovery, insight, and outcome driven decisions – not just features.
+        </p>
+        <div class="hero-tags">
+          <span class="tag">Discovery → Insight → Outcome</span>
+          <span class="tag">SMB Sales CRM</span>
+          <span class="tag">Data-enriched decisions</span>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="avatar-card">
+          <img src="avatar.png" alt="Dania avatar" class="avatar-img" />
+          <div class="avatar-text">
+            <p class="avatar-name">Dania Sami</p>
+            <p class="avatar-role">Product-minded PM candidate for Lime Go</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="layout">
+      <!-- Left column: personas + discovery -->
+      <section class="column">
+        <article class="card">
+          <h2>1. Customer Lens – Who are we building for?</h2>
+          <p class="card-sub">
+            Select a core Lime Go persona to see their jobs, pains and how Lime Go can help.
+          </p>
+          <select id="personaSelect" class="select">
+            <option value="salesLead">Sales Manager at growing SMB</option>
+            <option value="ae">Account Executive in busy pipeline</option>
+            <option value="founder">Founder / CEO in early-stage company</option>
+          </select>
+
+          <div class="persona-block">
+            <h3>Jobs to be done</h3>
+            <ul id="personaJobs" class="list"></ul>
+          </div>
+          <div class="persona-block">
+            <h3>Pain points today</h3>
+            <ul id="personaPains" class="list"></ul>
+          </div>
+          <div class="persona-block">
+            <h3>Lime Go opportunity</h3>
+            <ul id="personaOpportunities" class="list"></ul>
+          </div>
+        </article>
+
+        <article class="card">
+          <h2>2. Discovery Notes → Product Problem</h2>
+          <p class="card-sub">
+            Turn raw discovery notes into a focused product problem worth solving.
+          </p>
+          <textarea id="discoveryInput" class="textarea" placeholder="Example:
+- Sales team spends time on low value leads
+- No consistent way to prioritise who to call first
+- Pipeline reviews feel reactive, not proactive
+          "></textarea>
+          <button class="btn primary" onclick="summariseProblem()">Summarise problem</button>
+          <div class="problem-output" id="problemOutput"></div>
+        </article>
+      </section>
+
+      <!-- Middle column: funnel + revenue impact -->
+      <section class="column">
+        <article class="card">
+          <h2>3. Funnel Impact Simulator</h2>
+          <p class="card-sub">
+            Model how better prioritisation in Lime Go can move the needle for an SMB sales team.
+          </p>
+          <div class="grid-2">
+            <label class="field">
+              <span>Monthly new leads</span>
+              <input type="number" id="leadsInput" class="input" value="200" min="0" />
+            </label>
+            <label class="field">
+              <span>Baseline win rate (%)</span>
+              <input type="number" id="winRateInput" class="input" value="15" min="0" max="100" />
+            </label>
+            <label class="field">
+              <span>Improved win rate with better focus (%)</span>
+              <input type="number" id="improvedWinRateInput" class="input" value="22" min="0" max="100" />
+            </label>
+            <label class="field">
+              <span>Average deal value (SEK)</span>
+              <input type="number" id="dealValueInput" class="input" value="45000" min="0" />
+            </label>
+          </div>
+          <button class="btn primary" onclick="recalculateFunnel()">Recalculate impact</button>
+          <div class="impact-stats">
+            <div>
+              <p class="impact-label">Baseline monthly revenue</p>
+              <p class="impact-value" id="baselineRevenue">–</p>
+            </div>
+            <div>
+              <p class="impact-label">With prioritised leads</p>
+              <p class="impact-value accent" id="improvedRevenue">–</p>
+            </div>
+            <div>
+              <p class="impact-label">Extra revenue / month</p>
+              <p class="impact-value positive" id="extraRevenue">–</p>
+            </div>
+          </div>
+          <canvas id="revenueChart" height="130"></canvas>
+        </article>
+
+        <article class="card">
+          <h2>4. Outcome-first framing</h2>
+          <p class="card-sub">
+            What does success look like if we ship the right prioritisation feature?
+          </p>
+          <ul class="list bullet">
+            <li>Sales reps can clearly see “who to talk to next” in Lime Go.</li>
+            <li>Pipeline meetings shift from reporting to decision making.</li>
+            <li>Win rate, cycle time and ACV improve in a measurable way.</li>
+            <li>Customer feels Lime Go “thinks with them” instead of being a static database.</li>
+          </ul>
+        </article>
+      </section>
+
+      <!-- Right column: initiative scoring + roadmap -->
+      <section class="column">
+        <article class="card">
+          <h2>5. Initiative Prioritisation</h2>
+          <p class="card-sub">
+            Compare a few Lime Go initiatives and rank them using a simple value/effort score.
+          </p>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Initiative</th>
+                <th>User value</th>
+                <th>Business value</th>
+                <th>Effort</th>
+                <th>Score</th>
+              </tr>
+            </thead>
+            <tbody id="initiativeBody"></tbody>
+          </table>
+          <button class="btn secondary" onclick="sortInitiatives()">Sort by score</button>
+        </article>
+
+        <article class="card">
+          <h2>6. Thin-slice roadmap</h2>
+          <p class="card-sub">
+            Ship value quickly, then iterate with real usage data.
+          </p>
+          <ol class="roadmap">
+            <li><strong>Phase 1 – Insight layer:</strong> simple lead scoring and prioritised list in Lime Go UI.</li>
+            <li><strong>Phase 2 – Experimentation:</strong> A/B test scoring models and monitor impact.</li>
+            <li><strong>Phase 3 – Playbooks:</strong> recommended actions per segment and persona.</li>
+            <li><strong>Phase 4 – Expansion:</strong> region specific tuning and advanced analytics for power users.</li>
+          </ol>
+        </article>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>
+        Built by Dania Sami as a tailored case for the Lime Go Product Manager role – 
+        to show how I think in systems, connect discovery to delivery, and care about measurable outcomes.
+      </p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
